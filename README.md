@@ -31,10 +31,10 @@
 > *Live Portfolio with 14+ AWS/Azure/CCSP Labs | Terraform IaC | Free Tier Demos | Job-Ready Cloud Sec Engineer*
 
 <div class="header">
-    <h2>👋 Hi! I'm [Your Name], Aspiring Cloud Security Engineer</h2>
-    <p><strong>Goal: Secure Multi-Cloud Environments (AWS/Azure) | Target Roles: Cloud Security Engineer (80k€+)</strong></p>
-    <a href="https://www.linkedin.com/in/yourusername/"><img src="https://img.shields.io/badge/LinkedIn-Connect%20Now-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn"></a>
-    <a href="resume.pdf"><img src="https://img.shields.io/badge/Resume-PDF-green?style=for-the-badge&logo=adobe-acrobat-reader" alt="Resume"></a>
+    <h2>👋 Hi! I'm Rolly Mougoue, Aspiring Cloud Security Engineer</h2>
+    <p><strong>Goal: Secure Multi-Cloud Environments (AWS/Azure) | Target Roles: Cloud Security Engineer ($120k+)</strong></p>
+    <a href="https://www.linkedin.com/in/rollymougoue/"><img src="https://img.shields.io/badge/LinkedIn-Connect%20Now-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn"></a>
+    <a href="Resume - Security Analyst (2).pdf"><img src="https://img.shields.io/badge/Resume-PDF-green?style=for-the-badge&logo=adobe-acrobat-reader" alt="Resume"></a>
 </div>
 
 ## 📊 Skills Matrix
@@ -102,8 +102,8 @@
 **Open to Cloud Security Engineer opportunities | AWS/Azure Focus | France/EU Remote.**
 
 ## 📈 Contributions & Stars
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/CloudSec-Portfolio?style=social)](https://github.com/yourusername/CloudSec-Portfolio/stargazers/)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/CloudSec-Portfolio?style=social)](https://github.com/yourusername/CloudSec-Portfolio/network/members/)
+[![GitHub stars](https://img.shields.io/github/stars/rolly-mougoue/CloudSec-Portfolio?style=social)](https://github.com/rolly-mougoue/CloudSec-Portfolio/stargazers/)
+[![GitHub forks](https://img.shields.io/github/forks/rolly-mougoue/CloudSec-Portfolio?style=social)](https://github.com/rolly-mougoue/CloudSec-Portfolio/network/members/)
 
 **Thanks for the ⭐! Share your forked lab on LinkedIn #CloudSecurity**
 
