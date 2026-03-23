@@ -19,9 +19,9 @@
 
 # 🚀 Cloud Security Engineer Portfolio
 
-[![AWS Certified Solutions Architect](https://img.shields.io/badge/AWS%20Solutions%20Architect-Associate-orange?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
+[![AWS Certified Solutions Architect](https://www.credly.com/badges/33105d15-a047-4119-a4e0-1a145bae0381/public_url)]
 [![ISC2 CC](https://img.shields.io/badge/ISC2%20CC-Certified%20in%20Cybersecurity-blue?style=for-the-badge&logo=isc2)](https://www.isc2.org/certifications/cc)
-[![CompTIA CySA+](https://www.credly.com/badges/a986ca8c-0a1b-4d0d-b2f6-9071278d1447/public_url)
+[![CompTIA CySA+](https://www.credly.com/badges/a986ca8c-0a1b-4d0d-b2f6-9071278d1447/public_url)]
 [![AZ-500](https://img.shields.io/badge/AZ--500-Passed-purple?style=for-the-badge&logo=microsoft-azure)](https://learn.microsoft.com/en-us/certifications/azure-security-engineer/) <!-- Update once passed -->
 [![AWS SCS-C01](https://img.shields.io/badge/AWS%20SCS--C01-Passed-red?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/certification/certified-security-specialty/) <!-- Update once passed -->
 [![CCSP](https://img.shields.io/badge/CCSP-Passed-silver?style=for-the-badge&logo=isc2)](https://www.isc2.org/certifications/ccsp) <!-- Update once passed -->
