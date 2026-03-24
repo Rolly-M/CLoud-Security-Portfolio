@@ -55,8 +55,8 @@ The core of this setup is a VPC (10.0.0.0/16) featuring a Bastion Host (Jump Box
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd project-folder
+git clone https://github.com/Rolly-M/CLoud-Security-Portfolio.git
+cd "1 - AWS-Secure-VPC"
 ```
 
 2. Initialize Terraform:
