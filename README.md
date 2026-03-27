@@ -38,7 +38,7 @@
 *(Replace with your public Free Tier links. Use AWS Console Share for demos.)*
 
 ## 📂 All Repositories (14+ Hands-On Labs)
-1. **[AWS-Secure-VPC](A[WS-Secure-VPC](https://github.com/Rolly-M/CLoud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC))** : CIS VPC Baseline + NACL/Flow Logs.
+1. **[AWS-Secure-VPC](https://github.com/Rolly-M/CLoud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC)** : CIS VPC Baseline + NACL/Flow Logs.
 2. **[AWS-GuardDuty-Lab](AWS-GuardDuty-Lab)** : Threat Simulation + Lambda Remediation.
 3. **[AWS-Inspector-NSG](AWS-Inspector-NSG)** : Vulnerability Scans + Azure Hybrid.
 4. **[AWS-WAF-Terraform](AWS-WAF-Terraform)** : SQLi/XSS Blocking.
