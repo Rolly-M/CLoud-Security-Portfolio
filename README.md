@@ -29,14 +29,6 @@
 | **EKS/AKS Hardening** | ⭐⭐⭐⭐ | [EKS CIS](AWS-EKS-CIS) |
 | **KMS/KeyVault Encryption** | ⭐⭐⭐⭐⭐ | [Multi-Cloud Encrypt](AWS-MultiCloud-Encrypt) |
 
-## 🔥 Live Demos (Public Free Tier Links)
-- 🔒 **[Secure VPC Dashboard](https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#region=)** (Flow Logs Live)
-- 🛡️ **[Security Hub CIS 100%](https://us-east-1.console.aws.amazon.com/securityhub/home?region=us-east-1)** (Shareable View)
-- 📊 **[GuardDuty Findings](https://console.aws.amazon.com/guardduty/home?region=us-east-1)** (Simulated Threats)
-- ☁️ **[Azure NSG Test](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredAppsPreview)** (Public Tenant)
-
-*(Replace with your public Free Tier links. Use AWS Console Share for demos.)*
-
 ## 📂 All Repositories (14+ Hands-On Labs)
 1. **[AWS-Secure-VPC](https://github.com/Rolly-M/CLoud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC)** : CIS VPC Baseline + NACL/Flow Logs.
 2. **[AWS-GuardDuty-Lab](https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/2%20-%20AWS_Guard_Duty)** : Threat Simulation + Lambda Remediation.
