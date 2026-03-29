@@ -139,6 +139,26 @@ aws ec2 describe-instances --instance-ids <instance-id> \
   --query 'Reservations[].Instances[].SecurityGroups'
 ```
 
+## 🧹Cleanup
+
+When you're done testing or want to tear down the environment, follow these steps to properly clean up all resources and avoid ongoing charges.
+
+Move to the root directory of the project and run the following commands:
+
+```bash
+chmod +x cleanup.sh
+./cleanup.sh
+```
+
+### Important Notes
+
+1. KMS Keys: KMS keys are scheduled for deletion (7-30 days) rather than immediately deleted. This is an AWS safety feature.
+2. CloudWatch Logs: Log data is retained according to the retention policy. Deleting the log group removes all logs immediately.
+3. Forensic Snapshots: Consider keeping snapshots if they contain evidence from actual security incidents.
+4. Quarantined Instances: Always review quarantined instances before cleanup—they may have been legitimately compromised.
+5. Billing: Some resources may have already incurred charges. Check your AWS bill after cleanup.
+6. State File: If using remote state (S3 backend), remember to clean up the state file and DynamoDB lock table if no longer needed.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
