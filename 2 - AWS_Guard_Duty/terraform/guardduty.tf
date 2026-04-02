@@ -122,6 +122,20 @@ resource "aws_s3_bucket_policy" "guardduty_findings" {
         }
         Action   = "s3:GetBucketLocation"
         Resource = aws_s3_bucket.guardduty_findings.arn
+      },
+      {
+        Sid    = "AllowGuardDutyGetObject"
+        Effect = "Allow"
+        Principal = {
+          Service = "guardduty.amazonaws.com"
+        }
+        Action   = "s3:GetObject"
+        Resource = "${aws_s3_bucket.guardduty_findings.arn}/*"
+        Condition = {
+          StringEquals = {
+            "aws:SourceAccount" = data.aws_caller_identity.current.account_id
+          }
+        }
       }
     ]
   })
@@ -163,6 +177,26 @@ resource "aws_kms_key" "guardduty" {
         }
       },
       {
+        Sid    = "Allow CloudWatch Logs to use the key"
+        Effect = "Allow"
+        Principal = {
+          Service = "logs.${var.aws_region}.amazonaws.com"
+        }
+        Action = [
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt*",
+          "kms:GenerateDataKey*",
+          "kms:DescribeKey"
+        ]
+        Resource = "*"
+        Condition = {
+          ArnLike = {
+            "kms:EncryptionContext:aws:logs:arn" = "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:*"
+          }
+        }
+      },
+      {
         Sid    = "Allow Lambda to decrypt"
         Effect = "Allow"
         Principal = {
@@ -171,6 +205,30 @@ resource "aws_kms_key" "guardduty" {
         Action = [
           "kms:Decrypt",
           "kms:GenerateDataKey"
+        ]
+        Resource = "*"
+      },
+      {
+        Sid    = "Allow SNS to use the key"
+        Effect = "Allow"
+        Principal = {
+          Service = "sns.amazonaws.com"
+        }
+        Action = [
+          "kms:GenerateDataKey*",
+          "kms:Decrypt"
+        ]
+        Resource = "*"
+      },
+      {
+        Sid    = "Allow SQS to use the key"
+        Effect = "Allow"
+        Principal = {
+          Service = "sqs.amazonaws.com"
+        }
+        Action = [
+          "kms:GenerateDataKey*",
+          "kms:Decrypt"
         ]
         Resource = "*"
       }
@@ -194,7 +252,21 @@ resource "aws_guardduty_publishing_destination" "s3" {
   kms_key_arn     = aws_kms_key.guardduty.arn
 
   depends_on = [
-    aws_s3_bucket_policy.guardduty_findings
+    aws_s3_bucket_policy.guardduty_findings,
+    aws_kms_key.guardduty
+  ]
+}
+
+# S3 Object for Trusted IPs - Must contain valid CIDR blocks
+resource "aws_s3_object" "trusted_ips" {
+  bucket       = aws_s3_bucket.guardduty_findings.id
+  key          = "ipsets/trusted-ips.txt"
+  content      = "10.0.0.0/8\n172.16.0.0/12\n192.168.0.0/16\n"
+  content_type = "text/plain"
+
+  depends_on = [
+    aws_s3_bucket_policy.guardduty_findings,
+    aws_s3_bucket.guardduty_findings
   ]
 }
 
@@ -203,16 +275,27 @@ resource "aws_guardduty_ipset" "trusted" {
   activate    = true
   detector_id = aws_guardduty_detector.main.id
   format      = "TXT"
-  location    = "s3://${aws_s3_bucket.guardduty_findings.id}/ipsets/trusted-ips.txt"
+  location    = "s3://${aws_s3_bucket.guardduty_findings.id}/${aws_s3_object.trusted_ips.key}"
   name        = "${local.name_prefix}-trusted-ips"
 
-  depends_on = [aws_s3_object.trusted_ips]
+  depends_on = [
+    aws_s3_object.trusted_ips,
+    aws_s3_bucket_policy.guardduty_findings,
+    aws_guardduty_detector.main
+  ]
 }
 
-resource "aws_s3_object" "trusted_ips" {
-  bucket  = aws_s3_bucket.guardduty_findings.id
-  key     = "ipsets/trusted-ips.txt"
-  content = "# Add trusted IP addresses (one per line)\n# Example: 203.0.113.0/24\n"
+# S3 Object for Malicious IPs - Must contain valid IP addresses
+resource "aws_s3_object" "malicious_ips" {
+  bucket       = aws_s3_bucket.guardduty_findings.id
+  key          = "threatintel/malicious-ips.txt"
+  content      = "198.51.100.1\n198.51.100.2\n203.0.113.1\n203.0.113.2\n"
+  content_type = "text/plain"
+
+  depends_on = [
+    aws_s3_bucket_policy.guardduty_findings,
+    aws_s3_bucket.guardduty_findings
+  ]
 }
 
 # Threat Intel Set (known malicious IPs)
@@ -220,14 +303,12 @@ resource "aws_guardduty_threatintelset" "malicious" {
   activate    = true
   detector_id = aws_guardduty_detector.main.id
   format      = "TXT"
-  location    = "s3://${aws_s3_bucket.guardduty_findings.id}/threatintel/malicious-ips.txt"
+  location    = "s3://${aws_s3_bucket.guardduty_findings.id}/${aws_s3_object.malicious_ips.key}"
   name        = "${local.name_prefix}-threat-intel"
 
-  depends_on = [aws_s3_object.malicious_ips]
-}
-
-resource "aws_s3_object" "malicious_ips" {
-  bucket  = aws_s3_bucket.guardduty_findings.id
-  key     = "threatintel/malicious-ips.txt"
-  content = "# Known malicious IPs for testing\n# These are documentation IPs, not actual threats\n198.51.100.1\n198.51.100.2\n"
+  depends_on = [
+    aws_s3_object.malicious_ips,
+    aws_s3_bucket_policy.guardduty_findings,
+    aws_guardduty_detector.main
+  ]
 }
